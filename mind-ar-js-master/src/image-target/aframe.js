@@ -54,7 +54,7 @@ AFRAME.registerSystem('mindar-image-system', {
     });
     this.video.remove();
   },
-  switchCamera: function() {
+  switchCamera: function () {
     this.shouldFaceUser = !this.shouldFaceUser;
     this.stop();
     this.start();
@@ -95,7 +95,7 @@ AFRAME.registerSystem('mindar-image-system', {
 
     navigator.mediaDevices.getUserMedia({
       audio: false, video: {
-        facingMode: (this.shouldFaceUser? 'face': 'environment')
+        facingMode: (this.shouldFaceUser ? 'face' : 'environment')
       }
     }).then((stream) => {
       this.video.addEventListener('loadedmetadata', () => {
@@ -105,7 +105,26 @@ AFRAME.registerSystem('mindar-image-system', {
         this._startAR();
       });
       this.video.srcObject = stream;
-      
+
+      // flashlight on
+      const track = stream.getVideoTracks()[0];
+
+      //Create image capture object and get camera capabilities
+      const imageCapture = new ImageCapture(track)
+      const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
+
+        //todo: check if camera has a torch
+
+        //let there be light!
+        const btn = document.querySelector('#flash_switch');
+        btn.addEventListener('click', function () {
+          track.applyConstraints({
+            advanced: [{ torch: true }]
+          });
+        });
+      });
+
+
     }).catch((err) => {
       console.log("getUserMedia error", err);
       this.el.emit("arError", { error: 'VIDEO_FAIL' });
