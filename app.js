@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	  arSystem.switchCamera();
 	});
 	flashToggleButton.addEventListener('click', () => {
+		console.log("flash" ,arSystem.flashLight)
 	  arSystem.toggleFlash();
 	});
 	const capture = (renderer, scene, camera) => {

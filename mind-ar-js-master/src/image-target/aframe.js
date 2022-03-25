@@ -4,7 +4,7 @@ AFRAME.registerSystem('mindar-image-system', {
   container: null,
   video: null,
   shouldFaceUser: false,
-  flashLight: false,
+  flashLight: true,
   processingImage: false,
 
   init: function () {
@@ -144,7 +144,7 @@ AFRAME.registerSystem('mindar-image-system', {
         const imageCapture = new ImageCapture(track)
         const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
           track.applyConstraints({
-            advanced: [{ torch: this.flashLight }]
+            advanced: [{ torch: this.flashLight ? true : false }]
           });
 
 
