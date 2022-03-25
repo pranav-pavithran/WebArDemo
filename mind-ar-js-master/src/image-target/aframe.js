@@ -143,7 +143,7 @@ AFRAME.registerSystem('mindar-image-system', {
           //todo: check if camera has a torch
 
           //let there be light!
-          const btn = document.querySelector('switch');
+          const btn = document.querySelector('#flash_switch');
           btn.addEventListener('click', function () {
             track.applyConstraints({
               advanced: [{ torch: true }]
