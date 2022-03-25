@@ -4,7 +4,7 @@ AFRAME.registerSystem('mindar-image-system', {
   container: null,
   video: null,
   shouldFaceUser: false,
-  flashLight: true,
+  flashLight: false,
   processingImage: false,
 
   init: function () {
@@ -143,20 +143,26 @@ AFRAME.registerSystem('mindar-image-system', {
         //Create image capture object and get camera capabilities
         const imageCapture = new ImageCapture(track)
         const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
-          track.applyConstraints({
-            advanced: [{ torch: this.flashLight ? true : false }]
+        
+          // track.applyConstraints({
+          //   advanced: [{ torch: this.flashLight }]
+          // });
+
+
+          const onBtn = document.querySelector('#flash_on_switch');
+          const offBtn = document.querySelector('#flash_off_switch');
+
+          onBtn.addEventListener('click', function () {
+            track.applyConstraints({
+              advanced: [{ torch: true}]
+            });
           });
 
-
-          //todo: check if camera has a torch
-
-          //let there be light!
-          // const btn = document.querySelector('#flash_switch');
-          // btn.addEventListener('click', function () {
-          //   track.applyConstraints({
-          //     advanced: [{ torch: this.flashLight}]
-          //   });
-          // });
+          offBtn.addEventListener('click', function () {
+            track.applyConstraints({
+              advanced: [{ torch: false}]
+            });
+          });
 
 
 

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	const recordButton = document.querySelector("#record-button");
 	const switchCameraButton = document.querySelector("#switch-camera-button");
-	const flashToggleButton = document.querySelector("#flash_switch");
+	//const flashToggleButton = document.querySelector("#flash_switch");
 	
 	const sceneEl = document.querySelector('a-scene');
 	const arSystem = sceneEl.systems["mindar-image-system"];
@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	switchCameraButton.addEventListener('click', () => {
 	  arSystem.switchCamera();
 	});
-	flashToggleButton.addEventListener('click', () => {
-		console.log("flash" ,arSystem.flashLight)
-	  arSystem.toggleFlash();
-	});
+	// flashToggleButton.addEventListener('click', () => {
+	// 	console.log("flash" ,arSystem.flashLight)
+	//   arSystem.toggleFlash();
+	// });
 	const capture = (renderer, scene, camera) => {
 
 		//const video = document.querySelector('video')
