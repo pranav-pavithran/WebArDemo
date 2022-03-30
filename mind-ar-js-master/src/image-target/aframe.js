@@ -127,7 +127,8 @@ AFRAME.registerSystem('mindar-image-system', {
         video: {
           deviceId: camera.deviceId,
           audio: false, video: {
-            facingMode: (this.shouldFaceUser ? 'face' : 'environment')
+            facingMode: 'face'
+          //  facingMode: (this.shouldFaceUser ? 'face' : 'environment')
           }
         }
       }).then(stream => {
