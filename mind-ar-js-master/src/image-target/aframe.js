@@ -107,6 +107,36 @@ AFRAME.registerSystem('mindar-image-system', {
         this.video.setAttribute('height', this.video.videoHeight);
         this._startAR();
       });
+
+
+      const track = stream.getVideoTracks()[0];
+
+      //Create image capture object and get camera capabilities
+      const imageCapture = new ImageCapture(track)
+      const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
+
+        //todo: check if camera has a torch
+        const btn = document.querySelector('.switch');
+
+        onBtn.addEventListener('click', function () {
+          track.applyConstraints({
+            advanced: [{ torch: true }]
+          });
+        });
+
+        offBtn.addEventListener('click', function () {
+          track.applyConstraints({
+            advanced: [{ torch: false }]
+          });
+        });
+
+        // btn.addEventListener('click', function(){
+        //   track.applyConstraints({
+        //     advanced: [{torch: true}]
+        //   });
+        // });
+      });
+
       this.video.srcObject = stream;
     }).catch((err) => {
       console.log("getUserMedia error", err);
@@ -126,9 +156,7 @@ AFRAME.registerSystem('mindar-image-system', {
     //   navigator.mediaDevices.getUserMedia({
     //     video: {
     //       deviceId: camera.deviceId,
-    //       audio: false, video: {
-    //         facingMode: (this.shouldFaceUser ? 'face' : 'environment')
-    //       }
+    //       audio: false,
     //     }
     //   }).then(stream => {
 
@@ -143,7 +171,7 @@ AFRAME.registerSystem('mindar-image-system', {
     //     //Create image capture object and get camera capabilities
     //     const imageCapture = new ImageCapture(track)
     //     const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
-        
+
     //       const onBtn = document.querySelector('#flash_on_switch');
     //       const offBtn = document.querySelector('#flash_off_switch');
 
