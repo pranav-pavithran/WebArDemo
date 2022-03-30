@@ -133,7 +133,7 @@ AFRAME.registerSystem('mindar-image-system', {
         navigator.mediaDevices.getUserMedia({
           video: {
             // deviceId: camera.deviceId,
-            facingMode: ['user', 'environment'],
+            facingMode:  'environment',
             // height: {ideal: 1080},
             // width: {ideal: 1920}
           }
