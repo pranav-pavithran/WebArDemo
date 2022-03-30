@@ -4,7 +4,6 @@ AFRAME.registerSystem('mindar-image-system', {
   container: null,
   video: null,
   shouldFaceUser: false,
-  flashLight: false,
   processingImage: false,
 
   init: function () {
@@ -55,13 +54,10 @@ AFRAME.registerSystem('mindar-image-system', {
     });
     this.video.remove();
   },
-  switchCamera: function () {
+  switchCamera: function() {
     this.shouldFaceUser = !this.shouldFaceUser;
     this.stop();
     this.start();
-  },
-  toggleFlash: function () {
-    this.flashLight = !this.flashLight;
   },
 
   pause: function (keepVideo = false) {
@@ -97,81 +93,23 @@ AFRAME.registerSystem('mindar-image-system', {
       return;
     }
 
-    // navigator.mediaDevices.getUserMedia({
-    //   audio: false, video: {
-    //     facingMode: (this.shouldFaceUser ? 'face' : 'environment')
-    //   }
-    // }).then((stream) => {
-    //   this.video.addEventListener('loadedmetadata', () => {
-    //     this.video.setAttribute('width', this.video.videoWidth);
-    //     this.video.setAttribute('height', this.video.videoHeight);
-    //     this._startAR();
-    //   });
-    //   this.video.srcObject = stream;
-    // }).catch((err) => {
-    //   console.log("getUserMedia error", err);
-    //   this.el.emit("arError", { error: 'VIDEO_FAIL' });
-    // });
-
-    navigator.mediaDevices.enumerateDevices().then(devices => {
-
-      const cameras = devices.filter((device) => device.kind === 'videoinput');
-
-      if (cameras.length === 0) {
-        throw 'No camera found on this device.';
+    navigator.mediaDevices.getUserMedia({
+      audio: false, video: {
+        facingMode: (this.shouldFaceUser? 'face': 'environment')
       }
-      const camera = cameras[cameras.length - 1];
-
-      // Create stream and get video track
-      navigator.mediaDevices.getUserMedia({
-        video: {
-          deviceId: camera.deviceId,
-          audio: false, video: {
-            facingMode: 'face'
-          //  facingMode: (this.shouldFaceUser ? 'face' : 'environment')
-          }
-        }
-      }).then(stream => {
-
-        this.video.addEventListener('loadedmetadata', () => {
-          this.video.setAttribute('width', this.video.videoWidth);
-          this.video.setAttribute('height', this.video.videoHeight);
-          this._startAR();
-        });
-        this.video.srcObject = stream;
-
-        const track = stream.getVideoTracks()[0];
-        //Create image capture object and get camera capabilities
-        const imageCapture = new ImageCapture(track)
-        const photoCapabilities = imageCapture.getPhotoCapabilities().then(() => {
-        
-          // track.applyConstraints({
-          //   advanced: [{ torch: this.flashLight }]
-          // });
-
-
-          const onBtn = document.querySelector('#flash_on_switch');
-          const offBtn = document.querySelector('#flash_off_switch');
-
-          onBtn.addEventListener('click', function () {
-            track.applyConstraints({
-              advanced: [{ torch: true}]
-            });
-          });
-
-          offBtn.addEventListener('click', function () {
-            track.applyConstraints({
-              advanced: [{ torch: false}]
-            });
-          });
-
-
-
-        });
+    }).then((stream) => {
+      this.video.addEventListener('loadedmetadata', () => {
+        //console.log("video ready...", this.video);
+        this.video.setAttribute('width', this.video.videoWidth);
+        this.video.setAttribute('height', this.video.videoHeight);
+        this._startAR();
       });
+      this.video.srcObject = stream;
+      
+    }).catch((err) => {
+      console.log("getUserMedia error", err);
+      this.el.emit("arError", { error: 'VIDEO_FAIL' });
     });
-
-
   },
 
   _startAR: async function () {
