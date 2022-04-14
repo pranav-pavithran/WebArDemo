@@ -288,7 +288,12 @@ function load3dModles() {
 	} else if (modelId == "5") {
 		markerDiv.setAttribute("gltf-model", "models/3D/cutecat.glb");
 		markerDiv.setAttribute("scale", "0.25 0.25 0.25");
-	} else {
+	} 
+	else if (modelId == "6") {
+		markerDiv.setAttribute("gltf-model", "models/3D/love.glb");
+		markerDiv.setAttribute("scale", "6 6 6");
+	}
+	else {
 		markerDiv.setAttribute("gltf-model", "models/3D/skyscraper.gltf");
 		markerDiv.setAttribute("scale", "0.05 0.05 0.05");
 	}
