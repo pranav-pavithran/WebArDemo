@@ -290,7 +290,23 @@ function load3dModles() {
 		markerDiv.setAttribute("scale", "0.25 0.25 0.25");
 	} 
 	else if (modelId == "6") {
-		markerDiv.setAttribute("gltf-model", "models/3D/love.glb");
+		markerDiv.setAttribute("gltf-model", "models/3D/LOVE_24fps.glb");
+		markerDiv.setAttribute("scale", "6 6 6");
+	}
+	else if (modelId == "7") {
+		markerDiv.setAttribute("gltf-model", "models/3D/FloatingHearts.glb");
+		markerDiv.setAttribute("scale", "6 6 6");
+	}
+	else if (modelId == "8") {
+		markerDiv.setAttribute("gltf-model", "models/3D/Pixel_Hearts.glb");
+		markerDiv.setAttribute("scale", "6 6 6");
+	}
+	else if (modelId == "9") {
+		markerDiv.setAttribute("gltf-model", "models/3D/Rainbow.glb");
+		markerDiv.setAttribute("scale", "6 6 6");
+	}
+	else if (modelId == "10") {
+		markerDiv.setAttribute("gltf-model", "models/3D/Ribbon.glb");
 		markerDiv.setAttribute("scale", "6 6 6");
 	}
 	else {
