@@ -256,7 +256,7 @@ function loadMarkers() {
 		loadImages();
 	}
 	else if (modelType == "text") {
-		loadText(textAnimeType)
+		//loadText(textAnimeType)
 	}
 	else if (modelType == "bgfilter") {
 		loadFilter();
@@ -373,6 +373,7 @@ function loadText(anime_type) {
 	markerDiv.setAttribute("id", "the-text");
 	markerDiv.setAttribute("opacity", "1");
 	markerDiv.setAttribute("color", "red");
+	markerDiv.setAttribute("value", modelId);
 
 	var element = document.getElementById("#modelEntity");
 	element.appendChild(markerDiv);
