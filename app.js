@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	const recordButton = document.querySelector("#record-button");
 	const switchCameraButton = document.querySelector("#switch-camera-button");
-	
+
 	const sceneEl = document.querySelector('a-scene');
 	const arSystem = sceneEl.systems["mindar-image-system"];
-  
+
 	switchCameraButton.addEventListener('click', () => {
-	  arSystem.switchCamera();
+		arSystem.switchCamera();
 	});
 	const capture = (renderer, scene, camera) => {
 
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			previewVideoDiv.style.visibility = "visible";
 			previewVideo.src = videoURL;
 			previewVideo.play()
-		    previewVideo.loop = true
+			previewVideo.loop = true
 
 			SharePreviewVideo.addEventListener("click", () => {
 				previewVideoDiv.style.visibility = "hidden";
@@ -159,18 +159,18 @@ document.addEventListener("DOMContentLoaded", function () {
 				// 		title: 'AR Video',
 				// 	})
 				// } else {
-					var a = document.createElement("a");
-					document.body.appendChild(a);
-					a.style = "display: none";
-					a.href = videoURL;
-					a.download = "AR_video.mp4";
-					a.click();
-					window.URL.revokeObjectURL(url);
-					
-			//	}
+				var a = document.createElement("a");
+				document.body.appendChild(a);
+				a.style = "display: none";
+				a.href = videoURL;
+				a.download = "AR_video.mp4";
+				a.click();
+				window.URL.revokeObjectURL(url);
+
+				//	}
 			})
 
-		
+
 			// var a = document.createElement("a");
 			// document.body.appendChild(a);	
 			// a.style = "display: none";
@@ -260,7 +260,9 @@ function loadMarkers() {
 	}
 	else if (modelType == "bgfilter") {
 		loadFilter();
-		
+	}
+	else if (modelType == "fonts") {
+		loadFonts();
 	}
 }
 
@@ -288,7 +290,7 @@ function load3dModles() {
 	} else if (modelId == "5") {
 		markerDiv.setAttribute("gltf-model", "models/3D/cutecat.glb");
 		markerDiv.setAttribute("scale", "0.25 0.25 0.25");
-	} 
+	}
 	else if (modelId == "6") {
 		markerDiv.setAttribute("gltf-model", "models/3D/LOVE_24fps.glb");
 		markerDiv.setAttribute("scale", "6 6 6");
@@ -541,8 +543,8 @@ function loadFilter() {
 	let type = urlParams.get("model")
 
 	if (type == "colorfilter_red") {
-		const aImage = document.createElement("a-image");	
-		aImage.setAttribute("src","background_filters/colors/AR_ColorFilter_red.gif");
+		const aImage = document.createElement("a-image");
+		aImage.setAttribute("src", "background_filters/colors/AR_ColorFilter_red.gif");
 		aImage.setAttribute("height", "7");
 		aImage.setAttribute("width", "7");
 		aImage.setAttribute("position", "0 0 0");
@@ -550,8 +552,8 @@ function loadFilter() {
 		element.appendChild(aImage);
 	}
 	if (type == "colorfilter_blue") {
-		const aImage = document.createElement("a-image");		
-		aImage.setAttribute("src","background_filters/colors/AR_ColorFilter_blue.gif");
+		const aImage = document.createElement("a-image");
+		aImage.setAttribute("src", "background_filters/colors/AR_ColorFilter_blue.gif");
 		aImage.setAttribute("height", "7");
 		aImage.setAttribute("width", "7");
 		aImage.setAttribute("position", "0 0 0");
@@ -559,8 +561,8 @@ function loadFilter() {
 		element.appendChild(aImage);
 	}
 	if (type == "colorfilter_pale") {
-		const aImage = document.createElement("a-image");	
-		aImage.setAttribute("src","background_filters/colors/AR_ColorFilter_pale.gif");
+		const aImage = document.createElement("a-image");
+		aImage.setAttribute("src", "background_filters/colors/AR_ColorFilter_pale.gif");
 		aImage.setAttribute("height", "7");
 		aImage.setAttribute("width", "7");
 		aImage.setAttribute("position", "0 0 0");
@@ -568,8 +570,54 @@ function loadFilter() {
 		element.appendChild(aImage);
 	}
 	if (type == "colorfilter_yellow") {
-		const aImage = document.createElement("a-image");		
-		aImage.setAttribute("src","background_filters/colors/AR_ColorFilter_yellow.gif");
+		const aImage = document.createElement("a-image");
+		aImage.setAttribute("src", "background_filters/colors/AR_ColorFilter_yellow.gif");
+		aImage.setAttribute("height", "7");
+		aImage.setAttribute("width", "7");
+		aImage.setAttribute("position", "0 0 0");
+		var element = document.getElementById("#modelEntity");
+		element.appendChild(aImage);
+	}
+}
+
+function loadFonts() {
+	const urlParams = new URLSearchParams(window.location.search)
+	let type = urlParams.get("model")
+
+
+
+	if (type == "1") {
+		var element = document.getElementById("#modelEntity");
+		element.innerHTML = element.innerHTML + '<a-text color="red" value="Text in Arial" font="./fonts/arial/arial.fnt" font-image="./fonts/arial/arial.png" negate="false" scale="1 1 1" position="-1 0 0"></a-text>' +
+
+			" <a-text color='red' value='Text in Arial' font='./fonts/arial/arial.fnt' font-image='./fonts/arial/arial.png' negate='false' scale='1 1 1' position='-1 0 0'></a-text> " +
+			"<a-text color='red' value='Text in Cochin' font='./fonts/cochin/cochin.fnt' font-image='./fonts/cochin/cochin.png'  scale='1 1 1' position='-1 0.2 0'></a-text>" +
+
+			"<a-text color='red' value='Text in Courier-new' font='./fonts/courier-new/courier-new.fnt' font-image='./fonts/courier-new/courier-new.png'  scale='1 1 1' position='-1 0.4 0'></a-text>" +
+
+			" <a-text color='red' value='Text in Gill sans' font='./fonts/gill-sans/gill-sans.fnt' font-image='./fonts/gill-sans/gill-sans.png'  scale='1 1 1' position='-1 0.6 0'></a-text>" +
+
+			" <a-text color='red' value='Text in Papyrus' font='./fonts/papyrus/papyrus.fnt' font-image='./fonts/papyrus/papyrus.png'  scale='1 1 1' position='-1 0.8 0'></a-text>" +
+
+			"<a-text color='red' value='Text in Rockwell' font='./fonts/rockwell/rockwell.fnt' font-image='./fonts/rockwell/rockwell.png' scale='1 1 1' position='-1 1 0'></a-text>"
+	}
+	if (type == "colorfilter_blue") {
+		
+		var element = document.getElementById("#modelEntity");
+		element.appendChild(aImage);
+	}
+	if (type == "colorfilter_pale") {
+		const aImage = document.createElement("a-image");
+		aImage.setAttribute("src", "background_filters/colors/AR_ColorFilter_pale.gif");
+		aImage.setAttribute("height", "7");
+		aImage.setAttribute("width", "7");
+		aImage.setAttribute("position", "0 0 0");
+		var element = document.getElementById("#modelEntity");
+		element.appendChild(aImage);
+	}
+	if (type == "colorfilter_yellow") {
+		const aImage = document.createElement("a-image");
+		aImage.setAttribute("src", "background_filters/colors/AR_ColorFilter_yellow.gif");
 		aImage.setAttribute("height", "7");
 		aImage.setAttribute("width", "7");
 		aImage.setAttribute("position", "0 0 0");
