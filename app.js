@@ -217,6 +217,7 @@ function loadMarkers() {
 	let modelId = urlParams.get("model")
 	let modelType = urlParams.get("type")
 	let textAnimeType = urlParams.get("text_anime_type")
+	let font = urlParams.get("font")
 
 
 	// const exampleTarget = document.getElementById('#modelEntity');
@@ -249,21 +250,19 @@ function loadMarkers() {
 	// 	}
 	// })
 
-	if (modelType == "3d") {
-		load3dModles();
-	}
-	else if (modelType == "2d") {
-		loadImages();
-	}
-	else if (modelType == "text") {
-		//loadText(textAnimeType)
-	}
-	else if (modelType == "bgfilter") {
-		loadFilter();
-	}
-	else if (modelType == "fonts") {
-		loadFonts();
-	}
+	// if (modelType == "3d") {
+	// 	load3dModles();
+	// }
+	// else if (modelType == "2d") {
+	// 	loadImages();
+	// }
+	// else if (modelType == "text") {
+	// 	loadText(textAnimeType, font)
+	// }
+	// else if (modelType == "bgfilter") {
+	// 	loadFilter();
+	// }
+
 }
 
 function load3dModles() {
@@ -311,9 +310,20 @@ function load3dModles() {
 		markerDiv.setAttribute("gltf-model", "models/3D/Ribbon.glb");
 		markerDiv.setAttribute("scale", "6 6 6");
 	}
+	else if (modelId == "11") {
+		markerDiv.setAttribute("gltf-model", "models/3D/cake/cake_220120.glb");
+		markerDiv.setAttribute("scale", "6 6 6");
+		markerDiv.setAttribute("rotation", "0 -90 0");
+	}
+	else if (modelId == "12") {
+		markerDiv.setAttribute("gltf-model", "models/3D/FloatingText.dae");
+		markerDiv.setAttribute("scale", "6 6 6");
+		markerDiv.setAttribute("rotation", "0 -90 0");
+	}
 	else {
 		markerDiv.setAttribute("gltf-model", "models/3D/skyscraper.gltf");
 		markerDiv.setAttribute("scale", "0.05 0.05 0.05");
+
 	}
 
 	var element = document.getElementById("#modelEntity");
@@ -363,7 +373,7 @@ function loadImages() {
 	element.appendChild(markerDiv);
 }
 
-function loadText(anime_type) {
+function loadText(anime_type, font) {
 	const urlParams = new URLSearchParams(window.location.search)
 
 	let modelId = urlParams.get("model")
@@ -374,8 +384,10 @@ function loadText(anime_type) {
 	markerDiv.setAttribute("align", "center");
 	markerDiv.setAttribute("id", "the-text");
 	markerDiv.setAttribute("opacity", "1");
-	markerDiv.setAttribute("color", "red");
+	markerDiv.setAttribute("color", "black");
 	markerDiv.setAttribute("value", modelId);
+	markerDiv.setAttribute("font", `./fonts/${font}/${font}.fnt`);
+	markerDiv.setAttribute("font-image", `./fonts/${font}/${font}.png`);
 
 	var element = document.getElementById("#modelEntity");
 	element.appendChild(markerDiv);
@@ -588,21 +600,23 @@ function loadFonts() {
 
 	if (type == "1") {
 		var element = document.getElementById("#modelEntity");
-		element.innerHTML = element.innerHTML + '<a-text color="red" value="Text in Arial" font="./fonts/arial/arial.fnt" font-image="./fonts/arial/arial.png" negate="false" scale="1 1 1" position="-1 0 0"></a-text>' +
+		element.innerHTML = element.innerHTML + '<a-text color="red" value="Text in Arial" font="./fonts/arial/arial.fnt" font-image="./fonts/arial/arial.png" negate="false" scale="1 1 1" position="-1 0 0"></a-text>'
 
-			" <a-text color='red' value='Text in Arial' font='./fonts/arial/arial.fnt' font-image='./fonts/arial/arial.png' negate='false' scale='1 1 1' position='-1 0 0'></a-text> " +
-			"<a-text color='red' value='Text in Cochin' font='./fonts/cochin/cochin.fnt' font-image='./fonts/cochin/cochin.png'  scale='1 1 1' position='-1 0.2 0'></a-text>" +
+		// " <a-text color='red' value='Text in Arial' font='./fonts/arial/arial.fnt' font-image='./fonts/arial/arial.png' negate='false' scale='1 1 1' position='-1 0 0'></a-text> " +
+		// "<a-text color='red' value='Text in Cochin' font='./fonts/cochin/cochin.fnt' font-image='./fonts/cochin/cochin.png'  scale='1 1 1' position='-1 0.2 0'></a-text>" +
 
-			"<a-text color='red' value='Text in Courier-new' font='./fonts/courier-new/courier-new.fnt' font-image='./fonts/courier-new/courier-new.png'  scale='1 1 1' position='-1 0.4 0'></a-text>" +
+		// "<a-text color='red' value='Text in Courier-new' font='./fonts/courier-new/courier-new.fnt' font-image='./fonts/courier-new/courier-new.png'  scale='1 1 1' position='-1 0.4 0'></a-text>" +
 
-			" <a-text color='red' value='Text in Gill sans' font='./fonts/gill-sans/gill-sans.fnt' font-image='./fonts/gill-sans/gill-sans.png'  scale='1 1 1' position='-1 0.6 0'></a-text>" +
+		// " <a-text color='red' value='Text in Gill sans' font='./fonts/gill-sans/gill-sans.fnt' font-image='./fonts/gill-sans/gill-sans.png'  scale='1 1 1' position='-1 0.6 0'></a-text>" +
 
-			" <a-text color='red' value='Text in Papyrus' font='./fonts/papyrus/papyrus.fnt' font-image='./fonts/papyrus/papyrus.png'  scale='1 1 1' position='-1 0.8 0'></a-text>" +
+		// " <a-text color='red' value='Text in Papyrus' font='./fonts/papyrus/papyrus.fnt' font-image='./fonts/papyrus/papyrus.png'  scale='1 1 1' position='-1 0.8 0'></a-text>" +
 
-			"<a-text color='red' value='Text in Rockwell' font='./fonts/rockwell/rockwell.fnt' font-image='./fonts/rockwell/rockwell.png' scale='1 1 1' position='-1 1 0'></a-text>"
+		// "<a-text color='red' value='Text in Rockwell' font='./fonts/rockwell/rockwell.fnt' font-image='./fonts/rockwell/rockwell.png' scale='1 1 1' position='-1 1 0'></a-text>"
+		// var element = document.getElementById("#modelEntity");
+		// element.appendChild(aImage);
 	}
 	if (type == "colorfilter_blue") {
-		
+
 		var element = document.getElementById("#modelEntity");
 		element.appendChild(aImage);
 	}
