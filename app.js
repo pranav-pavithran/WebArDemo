@@ -250,18 +250,18 @@ function loadMarkers() {
 	// 	}
 	// })
 
-	// if (modelType == "3d") {
-	// 	load3dModles();
-	// }
-	// else if (modelType == "2d") {
-	// 	loadImages();
-	// }
-	// else if (modelType == "text") {
-	// 	loadText(textAnimeType, font)
-	// }
-	// else if (modelType == "bgfilter") {
-	// 	loadFilter();
-	// }
+	if (modelType == "3d") {
+		load3dModles();
+	}
+	else if (modelType == "2d") {
+		loadImages();
+	}
+	else if (modelType == "text") {
+		loadText(textAnimeType, font)
+	}
+	else if (modelType == "bgfilter") {
+		loadFilter();
+	}
 
 }
 
@@ -270,6 +270,7 @@ function load3dModles() {
 	let modelId = urlParams.get("model")
 
 	const markerDiv = document.createElement("a-gltf-model");
+	const markerDiv2 = document.createElement("a-collada-model");
 	//markerDiv.setAttribute("animation","property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate");
 	markerDiv.setAttribute("rotation", "0 0 0");
 	markerDiv.setAttribute("position", "0 0 0");
@@ -316,9 +317,14 @@ function load3dModles() {
 		markerDiv.setAttribute("rotation", "0 -90 0");
 	}
 	else if (modelId == "12") {
-		markerDiv.setAttribute("gltf-model", "models/3D/FloatingText.dae");
-		markerDiv.setAttribute("scale", "6 6 6");
-		markerDiv.setAttribute("rotation", "0 -90 0");
+		markerDiv2.setAttribute("collada-model", "models/3D/FloatingText.dae");
+		markerDiv2.setAttribute("scale", "6 6 6");
+		markerDiv2.setAttribute("rotation", "0 0 0");
+	}
+	else if (modelId == "13") {
+		markerDiv.setAttribute("gltf-model", "models/3D/FloatingText.glb");
+		markerDiv.setAttribute("scale", "10 10 10");
+		markerDiv.setAttribute("rotation", "90 0 0");
 	}
 	else {
 		markerDiv.setAttribute("gltf-model", "models/3D/skyscraper.gltf");
@@ -328,6 +334,7 @@ function load3dModles() {
 
 	var element = document.getElementById("#modelEntity");
 	element.appendChild(markerDiv);
+	//element.appendChild(markerDiv2);
 }
 
 function loadImages() {
