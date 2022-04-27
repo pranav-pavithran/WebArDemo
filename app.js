@@ -272,7 +272,7 @@ function load3dModles() {
 	const markerDiv = document.createElement("a-gltf-model");
 	const markerDiv2 = document.createElement("a-collada-model");
 	//markerDiv.setAttribute("animation","property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate");
-	markerDiv.setAttribute("rotation", "0 0 0");
+	
 	markerDiv.setAttribute("position", "0 0 0");
 
 	if (modelId == "1") {
@@ -293,23 +293,29 @@ function load3dModles() {
 	}
 	else if (modelId == "6") {
 		markerDiv.setAttribute("gltf-model", "models/3D/LOVE_24fps.glb");
-		markerDiv.setAttribute("scale", "6 6 6");
+		markerDiv.setAttribute("scale", "10 10 10");
+		markerDiv.setAttribute("rotation", "90 0 0");
 	}
 	else if (modelId == "7") {
 		markerDiv.setAttribute("gltf-model", "models/3D/FloatingHearts.glb");
-		markerDiv.setAttribute("scale", "6 6 6");
+		markerDiv.setAttribute("position", "0.2 0.7 0");
+		markerDiv.setAttribute("scale", "10 10 10");
 	}
 	else if (modelId == "8") {
 		markerDiv.setAttribute("gltf-model", "models/3D/Pixel_Hearts.glb");
+		markerDiv.setAttribute("position", "0 0 0");
 		markerDiv.setAttribute("scale", "6 6 6");
+		markerDiv.setAttribute("rotation", "90 0 0");
 	}
 	else if (modelId == "9") {
 		markerDiv.setAttribute("gltf-model", "models/3D/Rainbow.glb");
-		markerDiv.setAttribute("scale", "6 6 6");
+		markerDiv.setAttribute("scale", "10 10 10");
+		markerDiv.setAttribute("rotation", "90 0 0");
 	}
 	else if (modelId == "10") {
 		markerDiv.setAttribute("gltf-model", "models/3D/Ribbon.glb");
-		markerDiv.setAttribute("scale", "6 6 6");
+		markerDiv.setAttribute("scale", "15 15 	15");
+		markerDiv.setAttribute("rotation", "90 0 0");
 	}
 	else if (modelId == "11") {
 		markerDiv.setAttribute("gltf-model", "models/3D/cake/cake_220120.glb");
