@@ -393,11 +393,15 @@ function loadText(anime_type, font) {
 	markerDiv.setAttribute("opacity", "1");
 	markerDiv.setAttribute("color", "black");
 	markerDiv.setAttribute("value", modelId);
-	markerDiv.setAttribute("negate", false);
+	//markerDiv.setAttribute("font", "kelsonsans");
+	//markerDiv.setAttribute("negate", false);
 	// markerDiv.setAttribute("font", `./fonts/${font}/${font}.fnt`);
 	// markerDiv.setAttribute("font-image", `./fonts/${font}/${font}.png`)
 	if (font) {
-		markerDiv.setAttribute("font", `./test-fonts/${font}/${font}-msdf.json`);
+		//markerDiv.setAttribute("font", `./test-fonts/${font}/${font}-msdf.json`);
+
+		markerDiv.setAttribute("font", `./fonts/${font}/${font}.fnt`);
+		markerDiv.setAttribute("font-image", `./fonts/${font}/${font}.png`)
 	}
 
 
