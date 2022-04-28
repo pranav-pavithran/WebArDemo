@@ -384,7 +384,7 @@ function loadText(anime_type, font) {
 	markerDiv.setAttribute("align", "center");
 	markerDiv.setAttribute("id", "the-text");
 	markerDiv.setAttribute("opacity", "1");
-	markerDiv.setAttribute("color", "black");
+	markerDiv.setAttribute("color", "red");
 	markerDiv.setAttribute("value", modelId);
 	//markerDiv.setAttribute("font", "kelsonsans");
 	markerDiv.setAttribute("negate", false);
