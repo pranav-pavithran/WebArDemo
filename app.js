@@ -236,19 +236,6 @@ function loadMarkers() {
 	var sceneNode = document.getElementById("#scene");
 	sceneNode.setAttribute("mindar-image", imageSample);
 
-	// const exampleTarget = document.getElementById('#modelEntity');
-	// exampleTarget.addEventListener("targetFound", event => {
-
-	// 	if (modelType == "3d") {
-	// 		load3dModles();
-	// 	}
-	// 	else if (modelType == "2d") {
-	// 		loadImages();
-	// 	}
-	// 	else if (modelType == "text") {
-	// 		loadText(textAnimeType)
-	// 	}
-	// })
 
 	if (modelType == "3d") {
 		load3dModles();
@@ -401,8 +388,16 @@ function loadText(anime_type, font) {
 	markerDiv.setAttribute("value", modelId);
 	//markerDiv.setAttribute("font", "kelsonsans");
 	markerDiv.setAttribute("negate", false);
-	 markerDiv.setAttribute("font", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.json`);
-	 markerDiv.setAttribute("font-image", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.png`)
+
+	//  markerDiv.setAttribute("font", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.json`);
+	//  markerDiv.setAttribute("font-image", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.png`)
+	 
+	 markerDiv.setAttribute("font", `./test-fonts/mplus/mplus-msdf.json`);
+	 markerDiv.setAttribute("font-image", `./test-fonts/mplus/mplus-msdf.png`)
+
+	//  markerDiv.setAttribute("font", `./test-fonts/hui/hui-msdf.json`);
+	//  markerDiv.setAttribute("font-image", `./test-fonts/hui/hui-msdf.png`)
+	 
 	if (font) {
 		//markerDiv.setAttribute("font", `./test-fonts/${font}/${font}-msdf.json`);
 
