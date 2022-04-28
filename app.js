@@ -400,9 +400,9 @@ function loadText(anime_type, font) {
 	markerDiv.setAttribute("color", "black");
 	markerDiv.setAttribute("value", modelId);
 	//markerDiv.setAttribute("font", "kelsonsans");
-	//markerDiv.setAttribute("negate", false);
-	// markerDiv.setAttribute("font", `./fonts/${font}/${font}.fnt`);
-	// markerDiv.setAttribute("font-image", `./fonts/${font}/${font}.png`)
+	markerDiv.setAttribute("negate", false);
+	 markerDiv.setAttribute("font", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.json`);
+	 markerDiv.setAttribute("font-image", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.png`)
 	if (font) {
 		//markerDiv.setAttribute("font", `./test-fonts/${font}/${font}-msdf.json`);
 
