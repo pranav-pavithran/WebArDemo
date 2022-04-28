@@ -259,7 +259,7 @@ function load3dModles() {
 	const markerDiv = document.createElement("a-gltf-model");
 	const markerDiv2 = document.createElement("a-collada-model");
 	//markerDiv.setAttribute("animation","property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate");
-	
+
 	markerDiv.setAttribute("position", "0 0 0");
 
 	if (modelId == "1") {
@@ -391,20 +391,29 @@ function loadText(anime_type, font) {
 
 	//  markerDiv.setAttribute("font", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.json`);
 	//  markerDiv.setAttribute("font-image", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.png`)
-	 
-	 markerDiv.setAttribute("font", `./test-fonts/mplus/mplus-msdf.json`);
-	 markerDiv.setAttribute("font-image", `./test-fonts/mplus/mplus-msdf.png`)
+
+	// markerDiv.setAttribute("font", `./test-fonts/mplus/mplus-msdf.json`);
+	// markerDiv.setAttribute("font-image", `./test-fonts/mplus/mplus-msdf.png`)
 
 	//  markerDiv.setAttribute("font", `./test-fonts/hui/hui-msdf.json`);
 	//  markerDiv.setAttribute("font-image", `./test-fonts/hui/hui-msdf.png`)
-	 
-	if (font) {
-		//markerDiv.setAttribute("font", `./test-fonts/${font}/${font}-msdf.json`);
 
-		markerDiv.setAttribute("font", `./fonts/${font}/${font}.fnt`);
-		markerDiv.setAttribute("font-image", `./fonts/${font}/${font}.png`)
+	if (font == '1') {
+		markerDiv.setAttribute("font", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.json`);
+		markerDiv.setAttribute("font-image", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.png`)
+
+	}
+	else if (font == '2') {
+		markerDiv.setAttribute("font", `./test-fonts/mplus/mplus-msdf.json`);
+		markerDiv.setAttribute("font-image", `./test-fonts/mplus/mplus-msdf.png`)
+	} else {
+		markerDiv.setAttribute("font", `./test-fonts/hui/hui-msdf.json`);
+		markerDiv.setAttribute("font-image", `./test-fonts/hui/hui-msdf.png`)
+
 	}
 
+	// markerDiv.setAttribute("font", `./fonts/${font}/${font}.fnt`);
+	// markerDiv.setAttribute("font-image", `./fonts/${font}/${font}.png`)
 
 	var element = document.getElementById("#modelEntity");
 	element.appendChild(markerDiv);
