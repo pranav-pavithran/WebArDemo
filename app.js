@@ -373,134 +373,151 @@ function loadImages() {
 	element.appendChild(markerDiv);
 }
 
-function loadText(anime_type, font) {
-	const urlParams = new URLSearchParams(window.location.search)
+function loadText(params) {
+    const urlParams = new URLSearchParams(window.location.search)
+	let font = urlParams.get("font")
+	let text = urlParams.get("text")
 
-	let modelId = urlParams.get("model")
+   // var sceneNode = document.getElementById("#scene");
+    const markerDiv = document.createElement("a-troika-text");
 
+    markerDiv.setAttribute("color", "red");
+    markerDiv.setAttribute("font", `./fonts/ttf-fonts/${font}.ttf`);
+    markerDiv.setAttribute("value", text);
 
-	const markerDiv = document.createElement("a-text");
-	markerDiv.setAttribute("scale", "0.5 0.5 0.5");
-	markerDiv.setAttribute("align", "center");
-	markerDiv.setAttribute("id", "the-text");
-	markerDiv.setAttribute("opacity", "1");
-	markerDiv.setAttribute("color", "red");
-	markerDiv.setAttribute("value", modelId);
-	//markerDiv.setAttribute("font", "kelsonsans");
-	markerDiv.setAttribute("negate", false);
-
-	//  markerDiv.setAttribute("font", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.json`);
-	//  markerDiv.setAttribute("font-image", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.png`)
-
-	// markerDiv.setAttribute("font", `./test-fonts/mplus/mplus-msdf.json`);
-	// markerDiv.setAttribute("font-image", `./test-fonts/mplus/mplus-msdf.png`)
-
-	//  markerDiv.setAttribute("font", `./test-fonts/hui/hui-msdf.json`);
-	//  markerDiv.setAttribute("font-image", `./test-fonts/hui/hui-msdf.png`)
-
-	if (font == '1') {
-		markerDiv.setAttribute("font", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.json`);
-		markerDiv.setAttribute("font-image", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.png`)
-
-	}
-	else if (font == '2') {
-		markerDiv.setAttribute("font", `./test-fonts/mplus/mplus-msdf.json`);
-		markerDiv.setAttribute("font-image", `./test-fonts/mplus/mplus-msdf.png`)
-	} else {
-		markerDiv.setAttribute("font", `./test-fonts/hui/hui-msdf.json`);
-		markerDiv.setAttribute("font-image", `./test-fonts/hui/hui-msdf.png`)
-
-	}
-
-	// markerDiv.setAttribute("font", `./fonts/${font}/${font}.fnt`);
-	// markerDiv.setAttribute("font-image", `./fonts/${font}/${font}.png`)
-
-	var element = document.getElementById("#modelEntity");
+    var element = document.getElementById("#modelEntity");
 	element.appendChild(markerDiv);
 
-	/////flashing///////
-	if (anime_type === 'flashing') {
-		markerDiv.setAttribute("value", modelId);
-		markerDiv.setAttribute("animation", "property: opacity; to: 0; loop: true; dur: 500")
-	}
-
-	/////// Expansion ///////
-
-	if (anime_type === 'expansion_contraction') {
-		markerDiv.setAttribute("value", modelId);
-		anime({
-			targets: "#the-text",
-			scale: [
-				{ value: "0.5, 0.5, 0.5" },
-				{ value: "0.7, 0.2, 0.2" },
-				{ value: "0.2, 0.8, 0.5" },
-				{ value: "0.7, 0.4, 0.5" },
-				{ value: "0.4, 0.7, 0.5" },
-
-			],
-			duration: 3000,
-			loop: true,
-			easing: 'linear',
-			direction: 'alternate',
-		})
-
-	}
-
-
-	////// Vibration //////
-
-	if (anime_type === 'vibration') {
-		markerDiv.setAttribute("value", modelId);
-		anime({
-			targets: "#the-text",
-			position: [
-				{ value: "0 0 0" },
-				{ value: "-0.01 0 0" },
-				{ value: "0 0 0" },
-				{ value: "0.01 0 0" },
-			],
-			rotation: [
-				{ value: "0 0 0" },
-				{ value: "0 0 -1" },
-				{ value: "0 0 0" },
-				{ value: "0 0 1" },
-			],
-			duration: 200,
-			loop: true,
-			easing: 'linear'
-		})
-
-	}
-
-	////// color //////
-	if (anime_type === 'color_gradient') {
-		markerDiv.setAttribute("value", modelId);
-		markerDiv.setAttribute("animation", "property: color; from:#BA00FF; to: #FF006C; loop: true; dur: 2000;  dir: alternate;")
-	}
-
-	////// typewriter //////
-	if (anime_type === 'type_writer') {
-
-		//const exampleTarget = document.getElementById('#modelEntity');
-		// exampleTarget.addEventListener("targetFound", event => {	
-		// })
-
-		type_write({
-			// (C1) REQUIRED
-			target: document.getElementById("the-text"),
-			text: [modelId],
-			// (C2) OPTIONAL
-			forward: 500,  // delay between each character, default 100 ms
-			backward: 200, // delay between each character, default 50 ms
-			pause: 1000,  // pause before next cycle, default 1 sec
-			loop: true,   // loop typewriter effect, default true
-
-		});
-
-	}
-
-
 }
+
+// function loadText(anime_type, font) {
+// 	const urlParams = new URLSearchParams(window.location.search)
+
+// 	let modelId = urlParams.get("model")
+
+
+// 	const markerDiv = document.createElement("a-text");
+// 	markerDiv.setAttribute("scale", "0.5 0.5 0.5");
+// 	markerDiv.setAttribute("align", "center");
+// 	markerDiv.setAttribute("id", "the-text");
+// 	markerDiv.setAttribute("opacity", "1");
+// 	markerDiv.setAttribute("color", "red");
+// 	markerDiv.setAttribute("value", modelId);
+// 	//markerDiv.setAttribute("font", "kelsonsans");
+// 	markerDiv.setAttribute("negate", false);
+
+// 	//  markerDiv.setAttribute("font", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.json`);
+// 	//  markerDiv.setAttribute("font-image", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.png`)
+
+// 	// markerDiv.setAttribute("font", `./test-fonts/mplus/mplus-msdf.json`);
+// 	// markerDiv.setAttribute("font-image", `./test-fonts/mplus/mplus-msdf.png`)
+
+// 	//  markerDiv.setAttribute("font", `./test-fonts/hui/hui-msdf.json`);
+// 	//  markerDiv.setAttribute("font-image", `./test-fonts/hui/hui-msdf.png`)
+
+// 	if (font == '1') {
+// 		markerDiv.setAttribute("font", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.json`);
+// 		markerDiv.setAttribute("font-image", `./test-fonts/NotoSansJapanese/noto-sans-cjk-jp-msdf.png`)
+
+// 	}
+// 	else if (font == '2') {
+// 		markerDiv.setAttribute("font", `./test-fonts/mplus/mplus-msdf.json`);
+// 		markerDiv.setAttribute("font-image", `./test-fonts/mplus/mplus-msdf.png`)
+// 	} else {
+// 		markerDiv.setAttribute("font", `./test-fonts/hui/hui-msdf.json`);
+// 		markerDiv.setAttribute("font-image", `./test-fonts/hui/hui-msdf.png`)
+
+// 	}
+
+// 	// markerDiv.setAttribute("font", `./fonts/${font}/${font}.fnt`);
+// 	// markerDiv.setAttribute("font-image", `./fonts/${font}/${font}.png`)
+
+// 	var element = document.getElementById("#modelEntity");
+// 	element.appendChild(markerDiv);
+
+// 	/////flashing///////
+// 	if (anime_type === 'flashing') {
+// 		markerDiv.setAttribute("value", modelId);
+// 		markerDiv.setAttribute("animation", "property: opacity; to: 0; loop: true; dur: 500")
+// 	}
+
+// 	/////// Expansion ///////
+
+// 	if (anime_type === 'expansion_contraction') {
+// 		markerDiv.setAttribute("value", modelId);
+// 		anime({
+// 			targets: "#the-text",
+// 			scale: [
+// 				{ value: "0.5, 0.5, 0.5" },
+// 				{ value: "0.7, 0.2, 0.2" },
+// 				{ value: "0.2, 0.8, 0.5" },
+// 				{ value: "0.7, 0.4, 0.5" },
+// 				{ value: "0.4, 0.7, 0.5" },
+
+// 			],
+// 			duration: 3000,
+// 			loop: true,
+// 			easing: 'linear',
+// 			direction: 'alternate',
+// 		})
+
+// 	}
+
+
+// 	////// Vibration //////
+
+// 	if (anime_type === 'vibration') {
+// 		markerDiv.setAttribute("value", modelId);
+// 		anime({
+// 			targets: "#the-text",
+// 			position: [
+// 				{ value: "0 0 0" },
+// 				{ value: "-0.01 0 0" },
+// 				{ value: "0 0 0" },
+// 				{ value: "0.01 0 0" },
+// 			],
+// 			rotation: [
+// 				{ value: "0 0 0" },
+// 				{ value: "0 0 -1" },
+// 				{ value: "0 0 0" },
+// 				{ value: "0 0 1" },
+// 			],
+// 			duration: 200,
+// 			loop: true,
+// 			easing: 'linear'
+// 		})
+
+// 	}
+
+// 	////// color //////
+// 	if (anime_type === 'color_gradient') {
+// 		markerDiv.setAttribute("value", modelId);
+// 		markerDiv.setAttribute("animation", "property: color; from:#BA00FF; to: #FF006C; loop: true; dur: 2000;  dir: alternate;")
+// 	}
+
+// 	////// typewriter //////
+// 	if (anime_type === 'type_writer') {
+
+// 		//const exampleTarget = document.getElementById('#modelEntity');
+// 		// exampleTarget.addEventListener("targetFound", event => {	
+// 		// })
+
+// 		type_write({
+// 			// (C1) REQUIRED
+// 			target: document.getElementById("the-text"),
+// 			text: [modelId],
+// 			// (C2) OPTIONAL
+// 			forward: 500,  // delay between each character, default 100 ms
+// 			backward: 200, // delay between each character, default 50 ms
+// 			pause: 1000,  // pause before next cycle, default 1 sec
+// 			loop: true,   // loop typewriter effect, default true
+
+// 		});
+
+// 	}
+
+
+// }
 
 function type_write(instance) {
 	// (A) SET DEFAULT OPTIONS
